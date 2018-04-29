@@ -1,0 +1,25 @@
+{
+  "name": "tbapi-client",
+  "version": "1.0.0",
+  "description": "TBAPI Client",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/robthr/tbapi-client.git"
+  },
+  "author": "Malcolm Robinson",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/robthr/tbapi-client/issues"
+  },
+  "homepage": "https://github.com/robthr/tbapi-client#readme",
+  "dependencies": {
+    "async": "^2.6.0",
+    "axios": "^0.18.0",
+    "fs": "0.0.1-security",
+    "path": "^0.12.7"
+  }
+}
