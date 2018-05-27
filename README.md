@@ -1,4 +1,4 @@
-# tbapi-client
+# tbapi-client [![CodeFactor](https://www.codefactor.io/repository/github/robthr/tbapi-client/badge)](https://www.codefactor.io/repository/github/robthr/tbapi-client)
 
 ### API Client for [TBAPi](http://github.com/robthr/tbapi)
 
