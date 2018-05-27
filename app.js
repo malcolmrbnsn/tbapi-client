@@ -1,30 +1,37 @@
-// 'use strict'
+'use strict'
 const axios = require('axios'),
   Fs = require('fs'),
   Path = require('path'),
-  async = require('async');
-var url = "http://localhost:3000/api/hosts/192.168.1.1"
-var command = "omxplayer /home/pi/"
-var file = "sound.mp3"
-var toWrite = ""
+  async = require('async'),
+  ip = require("ip");
+//Vars
+var url = "http://localhost:3000/api/hosts/",
+  command = "omxplayer " + Path.resolve(__dirname) + "/",
+  toWrite = "",
+  hostname = ip.address(),
+  uri = url + hostname
+
+console.log("hostname detected is: " + hostname)
 
 // Make a request
-axios.get(url)
+axios.get(uri)
   .then(function(response) {
+    console.log(response.data);
     response.data.forEach(function(alarm) {
-      newAlarm = alarm.minute + " " + alarm.hour + " * * " + alarm.dow + " " + command + file
+      var newAlarm = alarm.minute + " " + alarm.hour + " * * " + alarm.dow + " " + command + alarm.file.name
       toWrite += newAlarm + " \n"
     })
     console.log(toWrite);
-    // write to a new file named 2pac.txt
-    Fs.writeFile('new.txt', toWrite, (err) => {
+    // write to a new file
+    Fs.writeFile('new' + Date.now() + '.txt', toWrite, (err) => {
       // throws an error, you could also catch it here
-      if (err) throw err;
-
+      if (err) {
+        console.log(err);
+      }
       // success case, the file was saved
-      console.log('Lyric saved!');
+      console.log('saved!');
     });
   })
   .catch(function(error) {
-    throw (err)
+    console.log(error);
   });
