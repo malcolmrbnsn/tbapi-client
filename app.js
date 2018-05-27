@@ -17,12 +17,12 @@ console.log("hostname detected is: " + hostname)
 axios.get(uri)
   .then(function(response) {
     response.data.forEach(function(alarm) {
-      var newAlarm = alarm.minute + " " + alarm.hour + " * * " + alarm.dow + " " + command + alarm.file.url
+      var newAlarm = alarm.minute + " " + alarm.hour + " * * " + alarm.dow + "robinson_cal " + command + alarm.file.url
       toWrite += newAlarm + " \n"
     })
     console.log(toWrite);
     // write to a new file
-    Fs.writeFile('new' + Date.now() + '.txt', toWrite, (err) => {
+    Fs.writeFile('new.txt', toWrite, (err) => {
       // throws an error, you could also catch it here
       if (err) {
         console.log(err);
