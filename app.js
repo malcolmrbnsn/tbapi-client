@@ -6,7 +6,7 @@ const axios = require('axios'),
   ip = require("ip");
 //Vars
 var url = "http://tbapi.robthrtest.xyz/api/hosts/",
-  command = "omxplayer " + Path.resolve(__dirname) + "/",
+  command = "omxplayer ",
   toWrite = "",
   hostname = ip.address(),
   uri = url + hostname
@@ -16,9 +16,8 @@ console.log("hostname detected is: " + hostname)
 // Make a request
 axios.get(uri)
   .then(function(response) {
-    console.log(response.data);
     response.data.forEach(function(alarm) {
-      var newAlarm = alarm.minute + " " + alarm.hour + " * * " + alarm.dow + " " + command + alarm.file.name
+      var newAlarm = alarm.minute + " " + alarm.hour + " * * " + alarm.dow + " " + command + alarm.file.url
       toWrite += newAlarm + " \n"
     })
     console.log(toWrite);
