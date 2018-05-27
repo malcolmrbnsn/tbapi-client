@@ -5,7 +5,7 @@ const axios = require('axios'),
   async = require('async'),
   ip = require("ip");
 //Vars
-var url = "http://localhost:3000/api/hosts/",
+var url = "http://tbapi.robthrtest.xyz/api/hosts/",
   command = "omxplayer " + Path.resolve(__dirname) + "/",
   toWrite = "",
   hostname = ip.address(),
