@@ -4,20 +4,24 @@ const axios = require('axios'),
   Path = require('path'),
   async = require('async'),
   ip = require("ip");
+require("dotenv").config();
 //Vars
-var url = "http://tbapi.robthrtest.xyz/api/hosts/",
+var url = process.env.URL,
   command = "omxplayer ",
   toWrite = "",
   hostname = ip.address(),
-  uri = url + hostname
+  uri = url + "/api/hosts/" + hostname
 
 console.log("hostname detected is: " + hostname)
 
 // Make a request
 axios.get(uri)
   .then(function(response) {
-    response.data.forEach(function(alarm) {
-      var newAlarm = alarm.minute + " " + alarm.hour + " * * " + alarm.dow + "robinson_cal " + command + alarm.file.url
+    if (response.data.error) {
+      console.log(response.data.error);
+    }
+    response.data.result.forEach((alarm) => {
+      var newAlarm = alarm.minute + " " + alarm.hour + " * * " + alarm.dow + " " + process.env.USERNAME + " " + command + url + alarm.url + " # " + alarm.name
       toWrite += newAlarm + " \n"
     })
     console.log(toWrite);
