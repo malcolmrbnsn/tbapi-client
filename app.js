@@ -1,16 +1,15 @@
-'use strict'
 const axios = require('axios'),
   Fs = require('fs'),
   Path = require('path'),
   async = require('async'),
   ip = require("ip");
-require("dotenv").config();
 //Vars
-var url = process.env.URL,
+var url = "", //Fill me in with hostname
   command = "omxplayer ",
   toWrite = "",
   hostname = ip.address(),
-  uri = url + "/api/hosts/" + hostname
+  uri = url + "/api/hosts/" + hostname,
+  username = "" // Fill me in with hostname
 
 console.log("hostname detected is: " + hostname)
 
@@ -21,7 +20,7 @@ axios.get(uri)
       console.log(response.data.error);
     }
     response.data.result.forEach((alarm) => {
-      var newAlarm = alarm.minute + " " + alarm.hour + " * * " + alarm.dow + " " + process.env.USERNAME + " " + command + url + alarm.url + " # " + alarm.name
+      var newAlarm = alarm.minute + " " + alarm.hour + " * * " + alarm.dow + " " + "robinson_cal" + " " + command + url + alarm.url + " # " + alarm.name
       toWrite += newAlarm + " \n"
     })
     console.log(toWrite);
@@ -36,5 +35,5 @@ axios.get(uri)
     });
   })
   .catch(function(error) {
-    console.log(error);
+    return console.log(error);
   });
