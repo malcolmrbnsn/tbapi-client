@@ -17,7 +17,6 @@
   },
   "homepage": "https://github.com/robthr/tbapi-client#readme",
   "dependencies": {
-    "async": "^2.6.0",
     "axios": "^0.18.0",
     "fs": "0.0.1-security",
     "ip": "^1.1.5",
