@@ -1,6 +1,6 @@
 const ip = require("ip");
 
-var url = "http://localhost",
+var url = "", //Fill me in with url
   hostname = ip.address(),
   uri = url + "/api/hosts/" + hostname
 
@@ -8,7 +8,7 @@ var optionsObj = {
   url,
   hostname,
   uri,
-  command: "omxplayer",
+  command: "", //Command to run when cron is hit
   username: process.env.USER
 }
 module.exports = optionsObj;
