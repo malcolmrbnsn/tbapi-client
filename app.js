@@ -1,39 +1,48 @@
-const axios = require('axios'),
-  Fs = require('fs'),
-  Path = require('path'),
-  async = require('async'),
-  ip = require("ip");
-//Vars
-var url = "", //Fill me in with hostname
-  command = "omxplayer ",
-  toWrite = "",
-  hostname = ip.address(),
-  uri = url + "/api/hosts/" + hostname,
-  username = "" // Fill me in with hostname
+const axios = require('axios')
 
-console.log("hostname detected is: " + hostname)
+// Helper functions
+const helpers = require("./helpers"),
+  {
+    makeCron,
+    saveCron,
+    getFiles,
+    checkDir
+  } = helpers;
 
-// Make a request
-axios.get(uri)
-  .then(function(response) {
-    if (response.data.error) {
-      console.log(response.data.error);
-    }
-    response.data.result.forEach((alarm) => {
-      var newAlarm = alarm.minute + " " + alarm.hour + " * * " + alarm.dow + " " + "robinson_cal" + " " + command + url + alarm.url + " # " + alarm.name
-      toWrite += newAlarm + " \n"
-    })
-    console.log(toWrite);
-    // write to a new file
-    Fs.writeFile('new.txt', toWrite, (err) => {
-      // throws an error, you could also catch it here
-      if (err) {
-        console.log(err);
-      }
-      // success case, the file was saved
-      console.log('saved!');
-    });
-  })
-  .catch(function(error) {
-    return console.log(error);
-  });
+// Make sure sounds dir exists
+// If not create it
+checkDir("./soundas")
+
+// Config
+const options = require("./options"),
+  {
+    hostname,
+    uri,
+    username
+  } = options
+
+// Debug stuff
+console.log('USERNAME: ' + username);
+console.log("HOSTNAME: " + hostname);
+console.log("URI: " + uri);
+
+//  GET to api
+axios.get(uri).
+then(async response => {
+  if (response.data.error) {
+    console.log("EXPRESS ERROR: " + JSON.stringify(response.data));
+
+    return response.data.error;
+  }
+  // Generate cron
+  var cron = await makeCron(response.data.result);
+  console.log('CRON: ' + cron);
+  // Save cron to a file
+  saveCron(cron);
+  // Download sound files
+  getFiles(response.data.result)
+}).
+catch((error) => {
+  console.log("AXIOS ERROR: " + error);
+  throw error
+})
