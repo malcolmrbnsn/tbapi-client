@@ -11,7 +11,7 @@ const helpers = require("./helpers"),
 
 // Make sure sounds dir exists
 // If not create it
-checkDir("./soundas")
+checkDir("./sounds")
 
 // Config
 const options = require("./options"),
@@ -34,13 +34,13 @@ then(async response => {
 
     return response.data.error;
   }
+    // Download sound files
+    getFiles(response.data.result)
   // Generate cron
   var cron = await makeCron(response.data.result);
   console.log('CRON: ' + cron);
   // Save cron to a file
   saveCron(cron);
-  // Download sound files
-  getFiles(response.data.result)
 }).
 catch((error) => {
   console.log("AXIOS ERROR: " + error);

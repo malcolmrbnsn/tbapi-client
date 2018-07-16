@@ -1,4 +1,4 @@
 #!/bin/bash
-node /opt/tbapi-client/app.js
-mv /opt/tbapi-client/cron.txt /etc/cron.d/tbapi-client
+node /home/robinson_cal/tbapi-client/app.js
+mv /home/robinson_cal/tbapi-client/cron.txt /etc/cron.d/tbapi-client
 sudo /etc/init.d/cron restart

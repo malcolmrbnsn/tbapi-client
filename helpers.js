@@ -50,7 +50,7 @@ exports.checkDir = (directory) => {
 exports.makeCron = result => {
     let toWrite = ""
     result.forEach((alarm) => {
-        var newAlarm = `${alarm.minute} ${alarm.hour} * * ${alarm.dow} ${username} ${command} ${url}${alarm.url} # ${alarm.name}`
+        var newAlarm = `${alarm.minute} ${alarm.hour} * * ${alarm.dow} ${username} ${command} ${Path.resolve(__dirname, 'sounds/', alarm.filename)} # ${alarm.name}`
         toWrite += newAlarm + " \n"
     })
 
