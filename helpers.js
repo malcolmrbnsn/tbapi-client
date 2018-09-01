@@ -11,7 +11,7 @@ const options = require("./options"),
     } = options
 
 downloadFile = async (soundURL, filename) => {
-    const path = Path.resolve(__dirname, 'sounds/', filename)
+    const path = Path.resolve('/tmp/tbapi/', filename)
     const fileURL = url + soundURL
 
     // axios image download with response type "stream"
@@ -50,7 +50,7 @@ exports.checkDir = (directory) => {
 exports.makeCron = result => {
     let toWrite = ""
     result.forEach((alarm) => {
-        var newAlarm = `${alarm.minute} ${alarm.hour} * * ${alarm.dow} ${username} ${command} ${Path.resolve(__dirname, 'sounds/', alarm.filename)} # ${alarm.name}`
+        var newAlarm = `${alarm.minute} ${alarm.hour} * * ${alarm.dow} ${username} ${command} ${Path.resolve(__dirname, '/tmp/tbapi/', alarm.filename)} # ${alarm.name}`
         toWrite += newAlarm + " \n"
     })
 
