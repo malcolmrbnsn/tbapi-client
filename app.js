@@ -27,7 +27,8 @@ axios.
     }
   }).
   then(async response => {
-    if (response.data.error) {
+    try {
+      if (response.data.error) {
       console.log("SERVER ERROR: " + JSON.stringify(response.data));
 
       return response.data.error;
@@ -39,6 +40,10 @@ axios.
     console.log("CRON: " + cron);
     // Save cron to a file
     saveCron(cron);
+  } catch (err) {
+    console.log("CLIENT ERROR: " + error);
+    throw err
+  }
   }).
   catch(error => {
     console.log("CLIENT ERROR: " + error);
