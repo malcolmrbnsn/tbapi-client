@@ -5,13 +5,14 @@ Path = require("path")
 // Config
 const options = require("./options"),
     {
+        soundDirectory,
         url,
         command,
         username
     } = options
 
 downloadFile = async (soundURL, filename) => {
-    const path = Path.resolve('/tmp/tbapi/', filename)
+    const path = Path.resolve(soundDirectory, filename)
     const fileURL = url + soundURL
 
     // axios image download with response type "stream"

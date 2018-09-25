@@ -1,5 +1,6 @@
 #!/bin/bash
 node /home/robinson_cal/tbapi-client/app.js
-rm /etc/cron.d/tbapi-client
-mv /home/robinson_cal/tbapi-client/cron.txt /etc/cron.d/tbapi-client
+mv /tmp/tbapi/cron.txt /etc/cron.d/tbapi-client
 sudo /etc/init.d/cron restart
+
+echo "**********************"
