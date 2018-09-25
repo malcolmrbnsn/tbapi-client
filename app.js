@@ -4,19 +4,20 @@ const axios = require("axios");
 const helpers = require("./helpers"),
   {makeCron, saveCron, getFiles, checkDir} = helpers;
 
-// Make sure sounds dir exists
-// If not create it
-checkDir("/tmp/tbapi");
-
 // Config
 const options = require("./options"),
-  {apiToken, hostname, uri, username} = options;
+  {apiToken, hostname, uri, username, soundDirectory} = options;
+
+// Make sure sounds dir exists
+// If not create it
+checkDir(soundDirectory);
 
 // Debug stuff
 console.log("USERNAME: " + username);
 console.log("HOSTNAME: " + hostname);
 console.log("URI: " + uri);
 console.log('API: ' + apiToken);
+console.log('SOUND DIR:' + soundDirectory);
 
 
 //  GET to api
