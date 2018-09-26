@@ -8,9 +8,9 @@ var optionsObj = {
   url,
   hostname,
   uri,
-  soundDirectory: "/tmp/tbapi/",
+  downloadDir: "/tmp/tbapi/", // Where to save the files
   apiToken: "", // API Token
   command: "", // Command to run when cron is hit
-  username: process.env.USER
+  username: "" // User
 }
 module.exports = optionsObj;
