@@ -6,7 +6,7 @@ const helpers = require("./helpers"),
 
 // Config
 const options = require("./options"),
-  {apiToken, hostname, uri, username, soundDirectory} = options;
+  {apiToken, hostname, uri, username, downloadDir} = options;
 
 // Make sure sounds dir exists
 // If not create it
@@ -17,7 +17,7 @@ console.log("USERNAME: " + username);
 console.log("HOSTNAME: " + hostname);
 console.log("URI: " + uri);
 console.log('API: ' + apiToken);
-console.log('SOUND DIR:' + soundDirectory);
+console.log('DOWNLOAD DIR:' + downloadDir);
 
 
 //  GET to api

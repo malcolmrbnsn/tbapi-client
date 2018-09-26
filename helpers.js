@@ -5,14 +5,14 @@ Path = require("path")
 // Config
 const options = require("./options"),
     {
-        soundDirectory,
+        downloadDir,
         url,
         command,
         username
     } = options
 
 downloadFile = async (soundURL, filename) => {
-    const path = Path.resolve(soundDirectory, filename)
+    const path = Path.resolve(downloadDir, filename)
     const fileURL = url + soundURL
 
     // axios image download with response type "stream"
@@ -51,7 +51,7 @@ exports.checkDir = (directory) => {
 exports.makeCron = result => {
     let toWrite = ""
     result.forEach((alarm) => {
-        var newAlarm = `${alarm.minute} ${alarm.hour} * * ${alarm.dow} ${username} ${command} ${Path.resolve(__dirname, '/tmp/tbapi/', alarm.filename)} # ${alarm.name}`
+        var newAlarm = `${alarm.minute} ${alarm.hour} * * ${alarm.dow} ${username} ${command} ${Path.resolve(downloadDir, alarm.filename)} # ${alarm.name}`
         toWrite += newAlarm + " \n"
     })
 
@@ -59,7 +59,7 @@ exports.makeCron = result => {
 }
 
 exports.saveCron = cron => {
-    Fs.writeFile('cron.txt', cron, (err) => {
+    Fs.writeFile(Path.resolve(downloadDir, 'cron.txt'), cron, (err) => {
         // throws an error, you could also catch it here
         if (err) {
             return console.log("SAVE ERROR: " + err);
