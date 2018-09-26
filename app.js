@@ -10,7 +10,7 @@ const options = require("./options"),
 
 // Make sure sounds dir exists
 // If not create it
-checkDir(soundDirectory);
+checkDir(downloadDir);
 
 // Debug stuff
 console.log("USERNAME: " + username);
