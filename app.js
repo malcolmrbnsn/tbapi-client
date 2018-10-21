@@ -16,7 +16,7 @@ checkDir(downloadDir);
 console.log("USERNAME: " + username);
 console.log("HOSTNAME: " + hostname);
 console.log("URI: " + uri);
-console.log('API: ' + apiToken);
+console.log('API TOKEN: ' + apiToken);
 console.log('DOWNLOAD DIR:' + downloadDir);
 
 

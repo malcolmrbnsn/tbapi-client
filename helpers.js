@@ -32,6 +32,7 @@ downloadFile = async (soundURL, filename) => {
         })
 
         response.data.on('error', (error) => {
+            console.log("SOUND DOWNLOAD ERR: " + error)
             reject(error)
         })
     })

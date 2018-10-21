@@ -1,6 +1,10 @@
 #!/bin/bash
+echo "running tbapi-client"
 node /home/robinson_cal/tbapi-client/app.js
+echo "moving the new cron"
 mv /tmp/tbapi/cron.txt /etc/cron.d/tbapi-client
+echo "restarting cron"
 sudo /etc/init.d/cron restart
+echo "done"
 
 echo "**********************"
